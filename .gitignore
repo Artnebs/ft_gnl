@@ -1,6 +1,13 @@
 main.c
 test_file.txt
-no_newline.txt
+no_newline_file.txt
 empty_file.txt
 large_file.txt
 gnl_test
+test_file1.txt
+test_file2.txt
+long_line_file.txt
+mixed_file.txt
+single_char_lines.txt
+multi_fd_test.c
+multi_fd_test

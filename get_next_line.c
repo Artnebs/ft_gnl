@@ -6,7 +6,7 @@
 /*   By: anebbou <anebbou@student42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 21:27:08 by anebbou           #+#    #+#             */
-/*   Updated: 2024/11/19 19:51:13 by anebbou          ###   ########.fr       */
+/*   Updated: 2024/11/20 19:39:13 by anebbou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*get_next_line(int fd)
 	char	temp_buffer[BUFFER_SIZE + 1];
 	ssize_t	bytes_read;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 )
 		return (NULL);
 	while ((bytes_read = read(fd, temp_buffer, BUFFER_SIZE)) > 0)
 	{
