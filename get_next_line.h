@@ -6,16 +6,16 @@
 /*   By: anebbou <anebbou@student42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 21:27:12 by anebbou           #+#    #+#             */
-/*   Updated: 2024/11/21 15:50:57 by anebbou          ###   ########.fr       */
+/*   Updated: 2024/11/22 18:21:09 by anebbou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 /* ************************************************************************** */
 /* INCLUDES */
@@ -38,22 +38,13 @@
 char	*get_next_line(int fd);
 char	*gnl_extract_line(char **buffer);
 
-int	gnl_find_newline(char *s);
+int		gnl_find_newline(const char *str);
 char	*gnl_strjoin(char *s1, char *s2);
 char	*gnl_substr(char *s, size_t start, size_t len);
 size_t	gnl_strlen(const char *s);
 
 /* ************************************************************************** */
-/* BONUS (Pour une éventuelle extension) */
-/* ************************************************************************** */
-
-
-
-/* ************************************************************************** */
 /* DEBUG */
 /* ************************************************************************** */
-
-
-
 
 #endif

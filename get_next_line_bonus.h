@@ -6,7 +6,7 @@
 /*   By: anebbou <anebbou@student42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 21:27:12 by anebbou           #+#    #+#             */
-/*   Updated: 2024/11/21 16:15:05 by anebbou          ###   ########.fr       */
+/*   Updated: 2024/11/22 18:33:19 by anebbou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 
 typedef struct s_fd_buffer
 {
-	int	fd;
-	char	*buffer;
+	int					fd;
+	char				*buffer;
 	struct s_fd_buffer	*next;
 }	t_fd_buffer;
 
@@ -46,14 +46,20 @@ typedef struct s_fd_buffer
 /* PROTOTYPES */
 /* ************************************************************************** */
 
-// Fonction principale
-char	*get_next_line(int fd);
+// Main function for getting the next line
+char		*get_next_line(int fd);
 
-// Fonctions utilitaires pour get_next_line
-t_fd_buffer	*gnl_find_fd(t_fd_buffer *head, int fd);
-t_fd_buffer	*gnl_add_fd(t_fd_buffer **head, int fd);
+// Utility functions for get_next_line
 void		gnl_remove_fd(t_fd_buffer **head, int fd);
+size_t		gnl_strlen(const char *str);
 char		*gnl_strjoin_and_free(char *s1, char *s2);
+int			gnl_find_newline(const char *str);
+char		*get_next_line(int fd);
+char		*read_to_buffer(int fd, t_fd_buffer *current_fd,
+				t_fd_buffer **fd_list);
 char		*gnl_extract_line(char **buffer);
+char		*gnl_update_buffer(char *buffer, int line_length);
+char		*gnl_allocate_line(char *buffer, int line_length);
+t_fd_buffer	*gnl_find_or_add_fd(int fd, t_fd_buffer **head);
 
 #endif

@@ -6,12 +6,20 @@
 /*   By: anebbou <anebbou@student42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 21:27:08 by anebbou           #+#    #+#             */
-/*   Updated: 2024/11/22 11:27:36 by anebbou          ###   ########.fr       */
+/*   Updated: 2024/11/22 18:09:06 by anebbou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-//free
+
+static char	*free_and_return_null(char **buffer)
+{
+	if (*buffer)
+		free(*buffer);
+	*buffer = NULL;
+	return (NULL);
+}
+
 static char	*read_and_append(int fd, char **buffer)
 {
 	char	*temp_buffer;
@@ -26,33 +34,15 @@ static char	*read_and_append(int fd, char **buffer)
 		temp_buffer[bytes_read] = '\0';
 		*buffer = gnl_strjoin(*buffer, temp_buffer);
 		if (!*buffer)
-		{
-			free(temp_buffer);
-			return (NULL);
-		}
+			return (free(temp_buffer), NULL);
 		if (gnl_find_newline(*buffer) >= 0)
 			break ;
 		bytes_read = read(fd, temp_buffer, BUFFER_SIZE);
 	}
 	free(temp_buffer);
 	if (bytes_read < 0)
-	{
-		if (*buffer)
-		{
-			free(*buffer);
-			*buffer = NULL;
-		}
-		return (NULL);
-	}
+		return (free_and_return_null(buffer));
 	return (*buffer);
-}
-
-static char	*free_and_return_null(char **buffer)
-{
-	if (*buffer)
-		free(*buffer);
-	*buffer = NULL;
-	return (NULL);
 }
 
 char	*get_next_line(int fd)
