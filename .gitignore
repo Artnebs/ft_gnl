@@ -11,3 +11,6 @@ mixed_file.txt
 single_char_lines.txt
 multi_fd_test.c
 multi_fd_test
+all.c
+read_error.txt
+
