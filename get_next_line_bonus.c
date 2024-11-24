@@ -6,7 +6,7 @@
 /*   By: anebbou <anebbou@student42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:02:59 by anebbou           #+#    #+#             */
-/*   Updated: 2024/11/22 18:12:57 by anebbou          ###   ########.fr       */
+/*   Updated: 2024/11/24 13:01:53 by anebbou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,19 @@ char	*read_to_buffer(int fd, t_fd_buffer *current_fd, t_fd_buffer **fd_list)
 	ssize_t	bytes_read;
 
 	temp_buffer = malloc(BUFFER_SIZE + 1);
-	bytes_read = read(fd, temp_buffer, BUFFER_SIZE);
 	if (!temp_buffer)
 		return (NULL);
+	bytes_read = read(fd, temp_buffer, BUFFER_SIZE);
 	while (bytes_read > 0)
 	{
 		temp_buffer[bytes_read] = '\0';
 		current_fd->buffer = gnl_strjoin_and_free(current_fd->buffer,
 				temp_buffer);
 		if (!current_fd->buffer)
-		{
-			free(temp_buffer);
-			gnl_remove_fd(fd_list, fd);
-			return (NULL);
-		}
+			return (free(temp_buffer), gnl_remove_fd(fd_list, fd), NULL);
 		if (gnl_find_newline(current_fd->buffer) >= 0)
 			break ;
+		bytes_read = read(fd, temp_buffer, BUFFER_SIZE);
 	}
 	free(temp_buffer);
 	if (bytes_read < 0)
