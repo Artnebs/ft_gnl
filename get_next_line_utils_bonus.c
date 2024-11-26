@@ -6,7 +6,7 @@
 /*   By: anebbou <anebbou@student42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:03:02 by anebbou           #+#    #+#             */
-/*   Updated: 2024/11/22 17:47:11 by anebbou          ###   ########.fr       */
+/*   Updated: 2024/11/26 12:18:07 by anebbou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_fd_buffer	*gnl_find_or_add_fd(int fd, t_fd_buffer **head)
 			return (current);
 		current = current->next;
 	}
-	if (fd > sysconf(_SC_OPEN_MAX))
+	if (fd > MAX_FD)
 		return (NULL);
 	new_node = (t_fd_buffer *)malloc(sizeof(t_fd_buffer));
 	if (!new_node)

@@ -6,12 +6,14 @@
 /*   By: anebbou <anebbou@student42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 21:27:12 by anebbou           #+#    #+#             */
-/*   Updated: 2024/11/22 18:33:19 by anebbou          ###   ########.fr       */
+/*   Updated: 2024/11/26 12:19:19 by anebbou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
+
+# define MAX_FD 1024
 
 /* ************************************************************************** */
 /* BUFFER DEFINITION */
@@ -28,7 +30,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include <sys/types.h>
 # include "get_next_line.h"
 
 /* ************************************************************************** */
